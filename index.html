@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nota Interaktif: Perimeter & Luas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .card { transition: transform 0.2s; }
+        .card:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white py-10 px-4 text-center shadow-lg">
+        <h1 class="text-3xl md:text-5xl font-bold mb-2">Nota Interaktif Matematik</h1>
+        <p class="text-blue-100 text-lg">Bab 10: Perimeter dan Luas (Tingkatan 1)</p>
+    </header>
+
+    <main class="max-w-5xl mx-auto p-6 space-y-12">
+        
+        <!-- Section 1: Perimeter -->
+        <section id="perimeter">
+            <div class="flex items-center mb-6">
+                <div class="bg-blue-600 w-2 h-8 mr-3 rounded"></div>
+                <h2 class="text-2xl font-bold">1. Apa itu Perimeter?</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 items-center bg-white p-6 rounded-xl shadow-sm border">
+                <div>
+                    <p class="mb-4 leading-relaxed text-gray-600">
+                        <strong>Perimeter</strong> ialah jumlah ukuran panjang setiap sisi yang mengelilingi suatu kawasan tertutup.
+                    </p>
+                    <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500 italic">
+                        "Bayangkan anda sedang berjalan di sepanjang pagar sebuah taman; jarak perjalanan anda itu adalah perimeternya."
+                    </div>
+                </div>
+                <div class="bg-gray-100 p-6 rounded-xl text-center">
+                    <p class="font-semibold mb-3">Kalkulator Perimeter Segi Empat</p>
+                    <div class="space-y-3">
+                        <input type="number" id="peri-panjang" placeholder="Panjang (cm)" class="w-full p-2 border rounded">
+                        <input type="number" id="peri-lebar" placeholder="Lebar (cm)" class="w-full p-2 border rounded">
+                        <button onclick="kiraPerimeter()" class="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700">Kira Sekarang</button>
+                        <p id="hasil-perimeter" class="text-xl font-bold text-blue-600 mt-2"></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Luas -->
+        <section id="luas">
+            <div class="flex items-center mb-6">
+                <div class="bg-green-600 w-2 h-8 mr-3 rounded"></div>
+                <h2 class="text-2xl font-bold">2. Konsep Luas</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Segitiga -->
+                <div class="card bg-white p-5 rounded-xl shadow-sm border border-green-100">
+                    <h3 class="font-bold text-green-700 mb-2">Segitiga</h3>
+                    <p class="text-sm text-gray-500 mb-4">Formula: $L = \frac{1}{2} \times \text{tapak} \times \text{tinggi}$</p>
+                    <input type="number" id="tri-tapak" placeholder="Tapak" class="w-full p-2 mb-2 border rounded text-sm">
+                    <input type="number" id="tri-tinggi" placeholder="Tinggi" class="w-full p-2 mb-4 border rounded text-sm">
+                    <button onclick="kiraLuasSegitiga()" class="w-full bg-green-600 text-white py-2 rounded text-sm">Kira Luas</button>
+                    <p id="hasil-segitiga" class="mt-2 font-bold text-center text-green-600"></p>
+                </div>
+
+                <!-- Bulatan -->
+                <div class="card bg-white p-5 rounded-xl shadow-sm border border-red-100">
+                    <h3 class="font-bold text-red-700 mb-2">Bulatan</h3>
+                    <p class="text-sm text-gray-500 mb-4">Formula: $L = \pi r^2$ (guna $\pi = 3.142$)</p>
+                    <input type="number" id="bulatan-jejari" placeholder="Jejari (r)" class="w-full p-2 mb-4 border rounded text-sm">
+                    <button onclick="kiraLuasBulatan()" class="w-full bg-red-600 text-white py-2 rounded text-sm">Kira Luas</button>
+                    <p id="hasil-bulatan" class="mt-2 font-bold text-center text-red-600"></p>
+                </div>
+
+                <!-- Trapezium -->
+                <div class="card bg-white p-5 rounded-xl shadow-sm border border-purple-100">
+                    <h3 class="font-bold text-purple-700 mb-2">Trapezium</h3>
+                    <p class="text-sm text-gray-500 mb-2">Formula: $L = \frac{1}{2} \times (a+b) \times t$</p>
+                    <input type="number" id="trap-a" placeholder="Sisi a" class="w-full p-2 mb-2 border rounded text-sm">
+                    <input type="number" id="trap-b" placeholder="Sisi b" class="w-full p-2 mb-2 border rounded text-sm">
+                    <input type="number" id="trap-t" placeholder="Tinggi" class="w-full p-2 mb-4 border rounded text-sm">
+                    <button onclick="kiraLuasTrapezium()" class="w-full bg-purple-600 text-white py-2 rounded text-sm">Kira Luas</button>
+                    <p id="hasil-trapezium" class="mt-2 font-bold text-center text-purple-600"></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Uji Minda -->
+        <section id="kuiz" class="bg-gray-800 text-white p-8 rounded-2xl shadow-xl">
+            <h2 class="text-2xl font-bold mb-6 text-center text-yellow-400">⚡ Cabaran Minda Pantas</h2>
+            <div id="quiz-container" class="space-y-6">
+                <div>
+                    <p class="text-lg mb-4">1. Jika panjang sisi sebuah segi empat sama ialah 5cm, berapakah luasnya?</p>
+                    <div class="grid grid-cols-2 gap-3">
+                        <button onclick="checkQuiz(this, false)" class="bg-gray-700 p-3 rounded hover:bg-gray-600 border border-gray-600">10 cm²</button>
+                        <button onclick="checkQuiz(this, true)" class="bg-gray-700 p-3 rounded hover:bg-gray-600 border border-gray-600">25 cm²</button>
+                        <button onclick="checkQuiz(this, false)" class="bg-gray-700 p-3 rounded hover:bg-gray-600 border border-gray-600">20 cm²</button>
+                        <button onclick="checkQuiz(this, false)" class="bg-gray-700 p-3 rounded hover:bg-gray-600 border border-gray-600">15 cm²</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="text-center py-10 text-gray-500 border-top mt-10">
+        <p>&copy; 2024 Projek GitHub Matematik Tingkatan 1</p>
+        <p class="text-xs mt-2 italic">Dibina untuk tujuan pembelajaran interaktif.</p>
+    </footer>
+
+    <script>
+        // Logik Perimeter
+        function kiraPerimeter() {
+            let p = parseFloat(document.getElementById('peri-panjang').value);
+            let l = parseFloat(document.getElementById('peri-lebar').value);
+            if(p > 0 && l > 0) {
+                let hasil = 2 * (p + l);
+                document.getElementById('hasil-perimeter').innerText = "Hasil: " + hasil + " cm";
+            } else {
+                document.getElementById('hasil-perimeter').innerText = "Masukkan nilai!";
+            }
+        }
+
+        // Logik Luas Segitiga
+        function kiraLuasSegitiga() {
+            let t = parseFloat(document.getElementById('tri-tapak').value);
+            let h = parseFloat(document.getElementById('tri-tinggi').value);
+            if(t > 0 && h > 0) {
+                document.getElementById('hasil-segitiga').innerText = (0.5 * t * h).toFixed(2) + " unit²";
+            }
+        }
+
+        // Logik Luas Bulatan
+        function kiraLuasBulatan() {
+            let r = parseFloat(document.getElementById('bulatan-jejari').value);
+            if(r > 0) {
+                document.getElementById('hasil-bulatan').innerText = (3.142 * r * r).toFixed(2) + " unit²";
+            }
+        }
+
+        // Logik Luas Trapezium
+        function kiraLuasTrapezium() {
+            let a = parseFloat(document.getElementById('trap-a').value);
+            let b = parseFloat(document.getElementById('trap-b').value);
+            let t = parseFloat(document.getElementById('trap-t').value);
+            if(a > 0 && b > 0 && t > 0) {
+                document.getElementById('hasil-trapezium').innerText = (0.5 * (a + b) * t).toFixed(2) + " unit²";
+            }
+        }
+
+        // Logik Kuiz
+        function checkQuiz(btn, isCorrect) {
+            const buttons = btn.parentElement.querySelectorAll('button');
+            buttons.forEach(b => {
+                b.disabled = true;
+                b.classList.remove('bg-gray-700');
+            });
+
+            if(isCorrect) {
+                btn.classList.add('bg-green-600', 'border-green-400');
+                btn.innerText += " ✅ Betul!";
+            } else {
+                btn.classList.add('bg-red-600', 'border-red-400');
+                btn.innerText += " ❌ Salah!";
+            }
+        }
+    </script>
+</body>
+</html>
